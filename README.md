@@ -1,0 +1,1 @@
+Umbrella DAO is a fandom DAO generator to create a DAO for a specific fandom.
