@@ -39,7 +39,7 @@ contract UmbrellaDAO {
         _;
     }
 
-    function createProposal(uint256 _forTokenId, ProposalType _proposalType)
+    function createProposal(ProposalType _proposalType)
         external
         memberOnly
     {
