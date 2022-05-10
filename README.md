@@ -1,1 +1,1 @@
-Umbrella DAO is a fandom DAO generator to create a DAO for a specific fandom.
+SafeBet is the best Betting dApp. Completely decentralized and powered by TRUTH, not Trust. courstesy of CHAINLINK
