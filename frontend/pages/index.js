@@ -1,5 +1,9 @@
 import Head from "next/head";
+import About from "../components/About";
+import Betting from "../components/Betting";
+import Footer from "../components/Footer";
 import Hero from "../components/Hero";
+import Team from "../components/Team";
 
 export default function Home() {
     return (
@@ -27,7 +31,7 @@ export default function Home() {
                     sizes='16x16'
                     href='/favicon/favicon-16x16.png'
                 />
-                <link rel='manifest' href='/site.webmanifest' />
+                <link rel='manifest' href='/favicon/site.webmanifest' />
                 <link
                     rel='mask-icon'
                     href='/favicon/safari-pinned-tab.svg'
@@ -39,9 +43,12 @@ export default function Home() {
 
             <main className='bg-gradient-to-br from-tertiary-color via-main to-tertiary-color'>
                 <Hero />
+                <About />
+                <Betting />
+                <Team />
             </main>
 
-            <footer></footer>
+            <Footer />
         </div>
     );
 }

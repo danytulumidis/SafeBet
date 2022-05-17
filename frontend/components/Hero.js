@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 const Hero = () => {
     return (
-        <section id='hero' className='h-screen'>
+        <section id='hero'>
             <Navbar />
             <section className='text-gray-300 body-font'>
                 <div className='container mx-auto flex px-5 py-24 md:flex-row flex-col items-center'>
