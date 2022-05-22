@@ -4,8 +4,78 @@ import Betting from "../components/Betting";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import Team from "../components/Team";
+import { useEffect, useRef, useState } from "react";
+import Web3Modal from "web3modal";
+import { Contract, providers, utils } from "ethers";
+import { RAFFLE_CONTRACT, ABI } from "../constants";
 
 export default function Home() {
+    const [walletConnected, setWalletConnected] = useState(false);
+    // Data getting from the Contract
+    const [participantCount, setParticipantCount] = useState(0);
+    const [entryFee, setEntryFee] = useState(0);
+    const [totalPrizePool, setTotalPrizePool] = useState(0);
+    // Track if user has already entered the game
+    const [startedBetting, setStartedBetting] = useState(false);
+
+    const web3ModalRef = useRef();
+
+    // Connecting to the Contract
+    const getProviderOrSigner = async (needSigner = false) => {
+        // Connect to Metamask
+        const provider = await web3ModalRef.current.connect();
+        const web3Provider = new providers.Web3Provider(provider);
+
+        // If user is not connected to the Mumbai network, let them know and throw an error
+        const { chainId } = await web3Provider.getNetwork();
+        if (chainId !== 80001) {
+            window.alert("Change the network to Mumbai");
+            throw new Error("Change network to Mumbai");
+        }
+
+        if (needSigner) {
+            const signer = web3Provider.getSigner();
+            return signer;
+        }
+        return web3Provider;
+    };
+
+    const connectWallet = async () => {
+        try {
+            await getProviderOrSigner();
+            setWalletConnected(true);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        if (!walletConnected) {
+            web3ModalRef.current = new Web3Modal({
+                network: "mumbai",
+                providerOptions: {},
+                disableInjectedProvider: false,
+            });
+            connectWallet();
+            getEntryFee();
+        }
+    }, [walletConnected]);
+
+    // Functions
+    const getEntryFee = async () => {
+        try {
+            const provider = await getProviderOrSigner();
+
+            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+
+            const entryFee = await contract.getEntranceFee();
+            entryFee = utils.formatEther(entryFee);
+            setEntryFee(entryFee);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div>
             <Head>
@@ -44,7 +114,7 @@ export default function Home() {
             <main className='bg-gradient-to-br from-tertiary-color via-main to-tertiary-color'>
                 <Hero />
                 <About />
-                <Betting />
+                <Betting entryFee={entryFee} />
                 <Team />
             </main>
 
