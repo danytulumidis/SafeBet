@@ -11,10 +11,16 @@ import { RAFFLE_CONTRACT, ABI } from "../constants";
 
 export default function Home() {
     const [walletConnected, setWalletConnected] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // RAFFLE
     // Data getting from the Contract
     const [participantCount, setParticipantCount] = useState(0);
     const [entryFee, setEntryFee] = useState(0);
-    const [totalPrizePool, setTotalPrizePool] = useState(0);
+    const [recentWinner, setRecentWinner] = useState("");
+    const [raffleState, setRaffleState] = useState(0);
+
+    // CRYPTO BET
     // Track if user has already entered the game
     const [startedBetting, setStartedBetting] = useState(false);
 
@@ -71,6 +77,48 @@ export default function Home() {
             const entryFee = await contract.getEntranceFee();
             entryFee = utils.formatEther(entryFee);
             setEntryFee(entryFee);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getRecentWinners = async () => {
+        try {
+            const provider = await getProviderOrSigner();
+
+            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+
+            const winners = await contract.getRecentWinner();
+            setRecentWinner(winners);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const enterRaffle = async (amount) => {
+        try {
+            const provider = await getProviderOrSigner(true);
+
+            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+
+            const tx = await contract.enterRaffle(amount);
+
+            setIsLoading(true);
+            await tx.wait();
+            setIsLoading(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getParticipantCount = async () => {
+        try {
+            const provider = await getProviderOrSigner();
+
+            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+
+            const count = await contract.getNumberOfPlayers();
+            setParticipantCount(count);
         } catch (error) {
             console.log(error);
         }
