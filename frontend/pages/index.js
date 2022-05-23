@@ -82,7 +82,7 @@ export default function Home() {
         }
     };
 
-    const getRecentWinners = async () => {
+    const getRecentWinner = async () => {
         try {
             const provider = await getProviderOrSigner();
 
@@ -119,6 +119,19 @@ export default function Home() {
 
             const count = await contract.getNumberOfPlayers();
             setParticipantCount(count);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getRaffleState = async () => {
+        try {
+            const provider = await getProviderOrSigner();
+
+            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+
+            const state = await contract.getRaffleState();
+            setRaffleState(state);
         } catch (error) {
             console.log(error);
         }
