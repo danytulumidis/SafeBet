@@ -159,7 +159,7 @@ const Bet = () => {
 
     return (
         <main className='bg-gradient-to-br from-tertiary-color via-main to-tertiary-color'>
-            <Betting />
+            <Betting latestETHPrice={latestETHPrice} />
         </main>
     );
 };
