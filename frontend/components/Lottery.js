@@ -3,7 +3,9 @@ import Navbar from "./Navbar";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { useWeb3React } from "@web3-react/core";
 
-export default function Lottery() {
+export default function Lottery(props) {
+    const { entryFee } = props;
+
     const injected = new InjectedConnector({
         supportedChainIds: [80001],
     });
@@ -116,7 +118,9 @@ export default function Lottery() {
                                 />
                             </svg>
                         </button>
-                        <h2 className='text-white text-5xl font-bold'>$3245</h2>
+                        <h2 className='text-white text-5xl font-bold'>
+                            Entry Fee: {entryFee}
+                        </h2>
                         <button className='border-2 border-secondary-color p-4 rounded-full mx-8 transition-all duration-500 ease-in-out hover:scale-90'>
                             <svg
                                 width='30px'
@@ -147,8 +151,8 @@ export default function Lottery() {
                 )}
                 <i>
                     <p className='text-white mt-8 text-xl text-center px-4'>
-                        <strong>Disclaimer: </strong>Please make sure that you
-                        have atleast 1 MATIC in your wallet
+                        <strong>Disclaimer: </strong>You need at least 0.1 MATIC
+                        to play
                     </p>
                 </i>
             </div>

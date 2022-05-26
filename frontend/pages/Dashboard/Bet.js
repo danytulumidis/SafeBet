@@ -3,6 +3,8 @@ import Betting from "../../components/Betting";
 
 const Bet = () => {
     // TODO: State variables for Betting
+    // Track if user has already entered the game
+    const [startedBetting, setStartedBetting] = useState(false);
 
     const web3ModalRef = useRef();
 

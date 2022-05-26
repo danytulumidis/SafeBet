@@ -1,18 +1,16 @@
 import Head from "next/head";
 import React from "react";
 import Lottery from "../../components/Lottery";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Contract, providers, utils } from "ethers";
+import Web3Modal from "web3modal";
+import { ROTARY_CONTRACT_ADDRESS, rotary_abi } from "../../constants";
 
 const Rotary = () => {
-    // Data getting from the Contract
     const [participantCount, setParticipantCount] = useState(0);
     const [entryFee, setEntryFee] = useState(0);
     const [recentWinner, setRecentWinner] = useState("");
     const [raffleState, setRaffleState] = useState(0);
-
-    // Track if user has already entered the game
-    const [startedBetting, setStartedBetting] = useState(false);
 
     const web3ModalRef = useRef();
 
@@ -41,7 +39,11 @@ const Rotary = () => {
         try {
             const provider = await getProviderOrSigner();
 
-            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+            const contract = new Contract(
+                ROTARY_CONTRACT_ADDRESS,
+                rotary_abi,
+                provider
+            );
 
             const entryFee = await contract.getEntranceFee();
             entryFee = utils.formatEther(entryFee);
@@ -55,7 +57,11 @@ const Rotary = () => {
         try {
             const provider = await getProviderOrSigner();
 
-            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+            const contract = new Contract(
+                ROTARY_CONTRACT_ADDRESS,
+                rotary_abi,
+                provider
+            );
 
             const winners = await contract.getRecentWinner();
             setRecentWinner(winners);
@@ -68,7 +74,11 @@ const Rotary = () => {
         try {
             const provider = await getProviderOrSigner(true);
 
-            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+            const contract = new Contract(
+                ROTARY_CONTRACT_ADDRESS,
+                rotary_abi,
+                provider
+            );
 
             const tx = await contract.enterRaffle(amount);
 
@@ -84,7 +94,11 @@ const Rotary = () => {
         try {
             const provider = await getProviderOrSigner();
 
-            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+            const contract = new Contract(
+                ROTARY_CONTRACT_ADDRESS,
+                rotary_abi,
+                provider
+            );
 
             const count = await contract.getNumberOfPlayers();
             setParticipantCount(count);
@@ -97,7 +111,11 @@ const Rotary = () => {
         try {
             const provider = await getProviderOrSigner();
 
-            const contract = new Contract(RAFFLE_CONTRACT, ABI, provider);
+            const contract = new Contract(
+                ROTARY_CONTRACT_ADDRESS,
+                rotary_abi,
+                provider
+            );
 
             const state = await contract.getRaffleState();
             setRaffleState(state);
@@ -105,6 +123,16 @@ const Rotary = () => {
             console.log(error);
         }
     };
+
+    useEffect(() => {
+        web3ModalRef.current = new Web3Modal({
+            network: "rinkeby",
+            providerOptions: {},
+            disableInjectedProvider: false,
+        });
+
+        getEntryFee();
+    }, []);
 
     return (
         <>
@@ -114,7 +142,7 @@ const Rotary = () => {
                 <meta name='theme-color' content='#ffffff' />
             </Head>
             <main className='bg-gradient-to-br from-tertiary-color via-main to-tertiary-color'>
-                <Lottery />
+                <Lottery entryFee={entryFee} />
             </main>
         </>
     );
