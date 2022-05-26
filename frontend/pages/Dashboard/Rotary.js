@@ -7,6 +7,7 @@ import Web3Modal from "web3modal";
 import { ROTARY_CONTRACT_ADDRESS, rotary_abi } from "../../constants";
 
 const Rotary = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [participantCount, setParticipantCount] = useState(0);
     const [entryFee, setEntryFee] = useState(0);
     const [recentWinner, setRecentWinner] = useState("");
@@ -126,7 +127,7 @@ const Rotary = () => {
 
     useEffect(() => {
         web3ModalRef.current = new Web3Modal({
-            network: "rinkeby",
+            network: "mumbai",
             providerOptions: {},
             disableInjectedProvider: false,
         });
