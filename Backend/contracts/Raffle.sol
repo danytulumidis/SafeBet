@@ -40,6 +40,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface, Ownable {
     uint256 private i_entranceFee;
     address payable[] private s_players;
     RaffleState private s_raffleState;
+    mapping(address => uint256) private userTotalCash;
 
     /* Events */
     event RequestedRaffleWinner(uint256 indexed requestId);
@@ -173,6 +174,8 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface, Ownable {
         if (!success) {
             revert Raffle__TransferFailed();
         }
+        // Track which user won how much
+        userTotalCash[recentWinner] += (address(this).balance * 99) / 100;
         emit WinnerPicked(recentWinner);
         // send remaining 1% to contract deployer.
         (bool success1, ) = owner().call{value: address(this).balance }("");
@@ -217,6 +220,10 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface, Ownable {
 
     function getNumberOfPlayers() public view returns (uint256) {
         return s_players.length;
+    }
+
+    function getTotalCashOfPlayer(address user) public view returns (uint256) {
+        return userTotalCash[user];
     }
 
     // function withdraw() public payable onlyOwner {
