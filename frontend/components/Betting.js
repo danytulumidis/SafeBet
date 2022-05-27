@@ -2,97 +2,95 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { useWeb3React } from "@web3-react/core";
-import Card from "./Card";
+
 import { truncateAddress } from "../utils";
 import { useState } from "react";
 
 export default function Betting() {
-    const [ latestETHPrice, setLatestETHPrice ] = useState();
+	const [latestETHPrice, setLatestETHPrice] = useState();
 
-    const injected = new InjectedConnector({
-        supportedChainIds: [80001],
-    });
+	const injected = new InjectedConnector({
+		supportedChainIds: [80001],
+	});
 
-    const {
-        active,
-        activate,
-        deactivate,
-        account,
-        connector,
-        library,
-        chainId,
-    } = useWeb3React();
+	const {
+		active,
+		activate,
+		deactivate,
+		account,
+		connector,
+		library,
+		chainId,
+	} = useWeb3React();
 
-    const getLatestETHPrice = async () => {
-        try {
-          const provider = await library.getSigner();
-    
-          const contract = new Contract(
-            CRYPTO_BET_CONTRACT_ADDRESS,
-            bet_abi,
-            provider
-          );
-    
-          const price = await contract.getLatestPriceETH();
-          price = utils.formatUnits(price, 4) * 10000;
-          setLatestETHPrice(price);
-        } catch (error) {
-          console.log(error);
-        }
-      };
+	const getLatestETHPrice = async () => {
+		try {
+			const provider = await library.getSigner();
 
-    const connectWallet = async () => {
-        if (chainId !== 80001) {
-            window.ethereum.request({
-                method: "wallet_addEthereumChain",
-                params: [
-                    {
-                        chainId: "0x13881",
-                        rpcUrls: ["https://matic-mumbai.chainstacklabs.com"],
-                        chainName: "Mumbai Testnet",
-                        nativeCurrency: {
-                            name: "MATIC",
-                            symbol: "MATIC",
-                            decimals: 18,
-                        },
-                        blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
-                    },
-                ],
-            });
-            await activate(injected);
-        }
-    };
+			const contract = new Contract(
+				CRYPTO_BET_CONTRACT_ADDRESS,
+				bet_abi,
+				provider
+			);
 
-    const disconnectWallet = () => {
-        deactivate(injected);
-    };
+			const price = await contract.getLatestPriceETH();
+			price = utils.formatUnits(price, 4) * 10000;
+			setLatestETHPrice(price);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-    const renderButton = () => {
-        if (!active) {
-            return (
-                <button
-                    className='font-bold text-white bg-secondary-color shadow-md shadow-glow border-0 py-3 px-24 focus:outline-none rounded text-lg transition-all duration-500 ease-in-out hover:scale-90'
-                    onClick={connectWallet}
-                >
-                    Connect Wallet
-                </button>
-            );
-        }
+	const connectWallet = async () => {
+		if (chainId !== 80001) {
+			window.ethereum.request({
+				method: "wallet_addEthereumChain",
+				params: [
+					{
+						chainId: "0x13881",
+						rpcUrls: ["https://matic-mumbai.chainstacklabs.com"],
+						chainName: "Mumbai Testnet",
+						nativeCurrency: {
+							name: "MATIC",
+							symbol: "MATIC",
+							decimals: 18,
+						},
+						blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+					},
+				],
+			});
+			await activate(injected);
+		}
+	};
 
-        if (active) {
-            return (
-                <button
-                    className='font-bold text-white border-secondary-color border-2  py-3 px-24 focus:outline-none rounded text-lg transition-all duration-500 ease-in-out '
-                    onClick={disconnectWallet}
-                >
-                    Wallet Connected!
-                </button>
-            );
-        }
-    };
+	const disconnectWallet = () => {
+		deactivate(injected);
+	};
 
-    return (
-        <div className='min-h-screen flex flex-col justify-between w-full'>
+	const renderButton = () => {
+		if (!active) {
+			return (
+				<button
+					className='font-bold text-white bg-secondary-color shadow-md shadow-glow border-0 py-3 px-24 focus:outline-none rounded text-lg transition-all duration-500 ease-in-out hover:scale-90'
+					onClick={connectWallet}>
+					Connect Wallet
+				</button>
+			);
+		}
+
+		if (active) {
+			return (
+				<button
+					className='font-bold text-white border-secondary-color border-2  py-3 px-24 focus:outline-none rounded text-lg transition-all duration-500 ease-in-out '
+					onClick={disconnectWallet}>
+					Wallet Connected!
+				</button>
+			);
+		}
+	};
+
+	return (
+		<div className='min-h-screen flex flex-col justify-between w-full'>
 			<Navbar
 				option1='Crypto Bet'
 				link1='/Dashboard/Bet'
@@ -151,7 +149,8 @@ export default function Betting() {
 														</p>
 													</div>
 													<div className='border-b border-gray-200 mt-0 text-white font-bold text-xl'>
-														Current ETH Price: {latestETHPrice}
+														Current ETH Price:{" "}
+														{latestETHPrice}
 													</div>
 												</div>
 											</a>
@@ -200,7 +199,7 @@ export default function Betting() {
 														</p>
 													</div>
 													<div className='border-b border-gray-200 mt-0 text-white font-bold text-xl'>
-														Pool Price: 
+														Pool Price:
 													</div>
 												</div>
 											</a>
@@ -227,23 +226,6 @@ export default function Betting() {
 										</div>
 									</div>
 								</div>
-								<div className='flex items-center space-x-4'>
-									<button
-										disabled
-										className='flex items-center text-gray-400 text-md border-pink-600 border-2 px-4 py-2 rounded-tl-sm rounded-bl-full rounded-r-full font-bold'>
-										YOUR WINS
-									</button>
-									<span className='text-sm text-gray-400'>
-										Lorem Ipsum
-									</span>
-								</div>
-								<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4'>
-									<Card />
-									<Card />
-									<Card />
-									<Card />
-									<Card />
-								</div>
 							</div>
 						</div>
 					</div>
@@ -251,5 +233,5 @@ export default function Betting() {
 			</div>
 			<Footer />
 		</div>
-    );
+	);
 }

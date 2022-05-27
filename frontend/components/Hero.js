@@ -18,14 +18,14 @@ const Hero = () => {
 							</span>
 						</h1>
 						<p className=' text-xl mb-8 leading-relaxed lg:pr-32 font-medium'>
-							If you want to bet in the world of Web3, SafeBet is
-							the best choice. A dApp that will help you bet on
-							things that excites you the most!
+							If you want to bet in the World of Web 3, SafeBet is
+							your finest option. A dApp that will assist you in
+							betting on the things that thrill you the most!
 						</p>
 						<div className='flex justify-center'>
-							<Link href='/Bet'>
+							<Link href='/Dashboard'>
 								<a target='_blank'>
-									<button className='inline-flex text-white bg-secondary-color shadow-md shadow-glow border-0 py-2 px-6 focus:outline-none rounded text-lg transition-all duration-500 ease-in-out hover:scale-90'>
+									<button className='inline-flex text-white bg-secondary-color shadow-md shadow-glow border-2 py-2 px-8 border-secondary-color focus:outline-none rounded text-lg transition-all duration-500 ease-in-out hover:scale-90'>
 										Bet Now!
 									</button>
 								</a>
