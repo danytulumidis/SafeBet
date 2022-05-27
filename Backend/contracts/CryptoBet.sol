@@ -25,6 +25,7 @@ contract CryptoBet is KeeperCompatibleInterface {
     uint256 private marginValue;
     uint256 private winningValueUp;
     uint256 private winningValueDown;
+    mapping(address => uint256) private userTotalCash;
 
     /**
      * Network: Mumbai Testnet
@@ -183,6 +184,8 @@ contract CryptoBet is KeeperCompatibleInterface {
             if (!sent) {
                 revert FUND_NOT_SEND();
             }
+            // Track which user won how much
+            userTotalCash[winneraddr] += entryAmount * 2;
         }
     }
 
@@ -260,6 +263,10 @@ contract CryptoBet is KeeperCompatibleInterface {
     // get last timestamp price
     function getLastTimeStampPrice() public view returns(uint256) {
         return lastTimeStampPrice;
+    }
+
+    function getTotalCashOfPlayer(address user) public view returns (uint256) {
+        return userTotalCash[user];
     }
 
     // Function to receive Ether. msg.data must be empty
