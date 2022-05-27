@@ -123,7 +123,7 @@ const Lotter = () => {
             );
 
             const res = await contract.getRaffleState();
-            const state = BigNumber.from(res).toString()
+            const state = BigNumber.from(res).toNumber()
             setRaffleState(state);
         } catch (error) {
             console.log(error);
