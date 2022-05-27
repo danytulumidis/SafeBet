@@ -71,7 +71,7 @@ const CryptoBet = () => {
 				window.alert("No wallet connected");
 				throw new Error("Wallet Not Connected!");
 			} else {
-				window.alert("wallet is connected");
+				console.log("wallet is connected");
 			}
 
 			const signer = await getProviderOrSigner(true);
@@ -100,7 +100,7 @@ const CryptoBet = () => {
 				window.alert("No wallet connected");
 				throw new Error("Wallet Not Connected!");
 			} else {
-				window.alert("wallet is connected");
+				console.log("wallet is connected");
 			}
 
 			const signer = await getProviderOrSigner(true);
@@ -404,8 +404,8 @@ const CryptoBet = () => {
 
 									{/* row 2 */}
 									<div className='mb-4'>
-										<div className='shadow-lg rounded-2xl bg-gray-900 w-full h-screen-1/2 flex flex-col justify-center'>
-											<p className='font-bebas text-4xl tracking-wider p-4 text-black dark:text-white'>
+										<div className='shadow-lg rounded-2xl bg-gray-900 w-full h-screen-1/2 flex flex-col justify-center items-center'>
+											<p className='font-bebas text-4xl lg:text-5xl tracking-wider p-4 text-transparent bg-clip-text bg-gradient-to-b from-pink-700 to-sf-violet'>
 												Current ETH Price
 											</p>
 											<p className=' text-2xl p-4 text-black dark:text-white'>
@@ -414,9 +414,9 @@ const CryptoBet = () => {
                           TODO: Add ETH Price 
                           */}
 											</p>
-											<p className='font-bebas text-4xl tracking-wider p-4 text-black dark:text-white'>
-												Previous ETH Price{" "}
-												<em className='text-sm'>
+											<p className='font-bebas text-4xl lg:text-5xl tracking-wider p-4 text-transparent bg-clip-text bg-gradient-to-b from-pink-700 to-sf-violet'>
+												Last ETH Price{" "}
+												<em className='text-sm text-white'>
 													(3 seconds before)
 												</em>
 											</p>
