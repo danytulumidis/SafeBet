@@ -1,5 +1,5 @@
-export const ROTARY_CONTRACT_ADDRESS = "0xeD2637CfE647BA2a64D7f17440bD0aE97cF819E3"
-export const rotary_abi = [
+export const Lottery_CONTRACT_ADDRESS = "0xeD2637CfE647BA2a64D7f17440bD0aE97cF819E3"
+export const Lottery_abi = [
     {
       "inputs": [
         {

@@ -75,8 +75,8 @@ export default function Lottery(props) {
             <Navbar
                 option1='Crypto Bet'
                 link1='/Dashboard/Bet'
-                option2='Rotary Game'
-                link2='/Dashboard/Rotary'
+                option2='Lottery Game'
+                link2='/Dashboard/Lottery'
                 option3='Dashboard'
                 link3='/Dashboard'
                 page='Crypto Bet'
