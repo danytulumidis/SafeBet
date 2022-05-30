@@ -230,7 +230,7 @@ const Lotter = () => {
 			<main className='pattern rounded-2xl h-screen lg:h-90vh 3xl:h-80vh overflow-hidden relative lg:mx-8'>
 				<div className='flex items-start justify-between'>
 					<div className='flex flex-col w-full pl-0 md:p-4 md:space-y-4'>
-						<header className='w-full shadow-lg bg-white dark:bg-gray-900 items-center h-24 rounded-2xl z-40'>
+						<header className='w-full shadow-lg bg-gray-900 items-center h-24 rounded-2xl z-40'>
 							<div className='relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center'>
 								<div className='relative items-center pl-1 flex w-full lg:max-w-68 sm:pr-2 sm:ml-0'>
 									<div className='relative p-1 flex items-center justify-center w-full ml-5 mr-4 sm:mr-0 sm:right-auto'>
@@ -247,7 +247,7 @@ const Lotter = () => {
 								<div className='w-full sm:w-1/2 xl:w-1/3'>
 									{/* row 1 */}
 									<div className='mb-4'>
-										<div className='shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-900 w-full'>
+										<div className='shadow-lg rounded-2xl p-4 bg-gray-900 w-full'>
 											<h1 className='text-6xl mb-4 font-medium text-white text-center w-full'>
 												<span className='font-bebas text-white'>
 													Let&apos;s
@@ -275,11 +275,11 @@ const Lotter = () => {
 									</div>
 									{/* row 2 */}
 									<div className='mb-4'>
-										<div className='shadow-lg rounded-2xl bg-white dark:bg-gray-900 w-full'>
-											<p className='font-bebas text-4xl p-4 text-black dark:text-white tracking-wider'>
+										<div className='shadow-lg rounded-2xl bg-gray-900 w-full'>
+											<p className='font-bebas text-4xl p-4 text-white tracking-wider'>
 												Total Number Of Players
 											</p>
-											<p className='font-bold text-6xl lg:text-7xl px-4 pb-4 text-black dark:text-white'>
+											<p className='font-bold text-6xl lg:text-7xl px-4 pb-4 text-white'>
 												{participantCount}
 											</p>
 										</div>
@@ -288,11 +288,11 @@ const Lotter = () => {
 								{/* COLUMN 2 */}
 								<div className='w-full sm:w-1/2 xl:w-1/3'>
 									<div className='mb-4 sm:ml-4 xl:mr-4'>
-										<div className='shadow-lg rounded-2xl bg-white dark:bg-gray-900 w-full'>
-											<p className='font-bebas text-4xl p-4 text-black dark:text-white tracking-wider'>
+										<div className='shadow-lg rounded-2xl bg-gray-900 w-full'>
+											<p className='font-bebas text-4xl p-4 text-white tracking-wider'>
 												Lottery State:
 											</p>
-											<p className='font-bold text-6xl px-4 pb-4 text-black dark:text-white'>
+											<p className='font-bold text-6xl px-4 pb-4 text-white'>
 												<span className='text-transparent bg-clip-text bg-gradient-to-b from-pink-700 to-sf-violet'>
 													{raffleState === 0
 														? "Lottery Open!"
@@ -303,14 +303,14 @@ const Lotter = () => {
 									</div>
 									{/* row 1 */}
 									<div className='mb-4 sm:ml-4 xl:mr-4'>
-										<div className='shadow-lg rounded-2xl bg-white dark:bg-gray-900 w-full'>
-											<p className='font-bebas text-4xl tracking-wider pt-4 px-4 text-black dark:text-white'>
+										<div className='shadow-lg rounded-2xl bg-gray-900 w-full'>
+											<p className='font-bebas text-4xl tracking-wider pt-4 px-4 text-white'>
 												Lottery Started At:
 											</p>
 											<p className=' text-2xl pb-4 px-4 font-bold text-transparent bg-clip-text bg-gradient-to-b from-pink-700 to-sf-violet'>
 												{clock}
 											</p>
-											<p className='font-bebas text-4xl  tracking-wider px-4 text-black dark:text-white'>
+											<p className='font-bebas text-4xl  tracking-wider px-4 text-white'>
 												Time Interval
 											</p>
 											<p className='text-2xl px-4 pb-4 text-transparent bg-clip-text bg-gradient-to-b from-pink-700 to-sf-violet'>
@@ -325,7 +325,7 @@ const Lotter = () => {
 								<div className='w-full sm:w-1/2 xl:w-1/3'>
 									{/* Row 1 */}
 									<div className='mb-4'>
-										<div className='shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-900 w-full'>
+										<div className='shadow-lg rounded-2xl p-4 bg-gray-900 w-full'>
 											<h2 className='p-4 text-5xl text-transparent bg-clip-text bg-gradient-to-b from-pink-700 to-sf-violet font-bebas tracking-wider'>
 												Disclaimer
 											</h2>
@@ -342,11 +342,11 @@ const Lotter = () => {
 									</div>
 									{/* Row 2 */}
 									<div className='mb-4'>
-										<div className='shadow-lg rounded-2xl bg-white dark:bg-gray-900 w-full'>
-											<p className='font-bebas text-4xl tracking-wider pt-4 pb-2 px-4 text-black dark:text-white'>
+										<div className='shadow-lg rounded-2xl bg-gray-900 w-full'>
+											<p className='font-bebas text-4xl tracking-wider pt-4 pb-2 px-4 text-white'>
 												Recent Winner
 											</p>
-											<p className=' text-2xl px-4 pb-2 text-black dark:text-white'>
+											<p className=' text-2xl px-4 pb-2 text-white'>
 												Winner of our last lottery round
 												is:
 											</p>
