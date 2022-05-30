@@ -228,7 +228,7 @@ const CryptoBet = () => {
 			<main className='pattern rounded-2xl h-screen lg:h-90vh 3xl:h-80vh overflow-hidden relative'>
 				<div className='flex  items-center justify-center'>
 					<div className='flex flex-col w-full pl-0 md:p-4 md:space-y-4'>
-						<header className='w-full shadow-lg bg-white dark:bg-gray-900 items-center h-24 rounded-2xl z-40'>
+						<header className='w-full shadow-lg bg-gray-900 items-center h-24 rounded-2xl z-40'>
 							<div className='relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center'>
 								<div className='relative items-center pl-1 flex w-full lg:max-w-68 sm:pr-2 sm:ml-0'>
 									<div className='relative p-1 flex items-center justify-center w-full ml-5 mr-4 sm:mr-0 sm:right-auto'>
@@ -408,7 +408,7 @@ const CryptoBet = () => {
 											<p className='font-bebas text-4xl lg:text-5xl tracking-wider p-4 text-transparent bg-clip-text bg-gradient-to-b from-pink-700 to-sf-violet'>
 												Current ETH Price
 											</p>
-											<p className=' text-2xl p-4 text-black dark:text-white'>
+											<p className=' text-2xl p-4 text-white'>
 												${latestETHPrice} USD
 												{/* 
                           TODO: Add ETH Price 
@@ -420,7 +420,7 @@ const CryptoBet = () => {
 													(3 seconds before)
 												</em>
 											</p>
-											<p className='text-2xl p-4 text-black dark:text-white'>
+											<p className='text-2xl p-4 text-white'>
 												${prevETHPrice} USD
 												{/*
                           TODO: Add previous ETH Price 
